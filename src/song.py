@@ -68,3 +68,4 @@ class Song:
                 return self.get_random_line()
             
         return line
+        
