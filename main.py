@@ -26,7 +26,7 @@ api = tweepy.API(auth)
 client = tweepy.Client(BEARER_TOKEN, API_KEY, API_KEY_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
 logging.basicConfig(
-    filename="newfile.log",
+    filename="sentino.log",
     format='%(asctime)s %(message)s',
     filemode='w'
 )
