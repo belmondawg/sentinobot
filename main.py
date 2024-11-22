@@ -3,6 +3,7 @@ import tweepy
 import requests 
 import time 
 import logging
+import random
 
 from dotenv import load_dotenv
 
@@ -54,7 +55,7 @@ def main():
         media = api.media_upload("data/image.png")
         tweet = client.create_tweet(media_ids=[media.media_id])
   
-        time.sleep(24 * 60 * 60)
+        time.sleep((60 * 60) * random.randint(1, 5))
 
 if __name__ == "__main__":
     main()
