@@ -17,7 +17,9 @@ class ImageGen:
         secondary_color (str): Secondary color of the album cover represented in a hex value. 
 
     Methods:
-        speak(): Returns a string representing the dog's bark.
+        add_corners(): Adds corners to provided image.
+        prepare_album_cover(): Responsible for adding gradient to the album cover.
+        generate(): Generates the image.
     """
 
     def __init__(self, title: str, artist: str, album: str, line: str, image_data: bytes, album_image_data: bytes, 
@@ -122,6 +124,3 @@ class ImageGen:
         draw.text((margin, 400 - margin - 15), "@sentinobot", fill=self.text_color, font=watermark_font)
 
         return image
-   
-        
-
