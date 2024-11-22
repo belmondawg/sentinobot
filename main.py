@@ -25,7 +25,14 @@ api = tweepy.API(auth)
 
 client = tweepy.Client(BEARER_TOKEN, API_KEY, API_KEY_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
+logging.basicConfig(
+    filename="newfile.log",
+    format='%(asctime)s %(message)s',
+    filemode='w'
+)
+
 logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 def main():
     """Main loop"""
@@ -52,10 +59,14 @@ def main():
         image.save("data/image.png")
 
         logger.info("posting...")
-        media = api.media_upload("data/image.png")
-        tweet = client.create_tweet(media_ids=[media.media_id])
+        
+        try:
+            media = api.media_upload("data/image.png")
+            tweet = client.create_tweet(media_ids=[media.media_id])
+        except tweepy.errors.TooManyRequests:
+            logging.info("done for today")
   
-        time.sleep((60 * 60) * random.randint(1, 5))
+        time.sleep((60 * 60) * random.randint(1, 3))
 
 if __name__ == "__main__":
     main()
