@@ -118,9 +118,7 @@ class ImageGen:
 
         draw.text(((margin + 110), title_y), self.title, fill=self.text_color, font=title_font)
         draw.text(((margin + 110), artist_y), self.artist, fill=self.text_color, font=artist_font)
-
         draw.text((margin, line_y), self.line, fill=self.text_color, font=line_font)
-
         draw.text((margin, 400 - margin - 15), "@sentinobot", fill=self.text_color, font=watermark_font)
 
         return image
