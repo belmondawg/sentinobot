@@ -35,8 +35,8 @@ class ImageGen:
         self.text_color = hex_to_rgb(text_color)
 
     def add_corners(self, image: Image, radius: int) -> Image:
-        if image.mode == "P":
-            image = image.convert("RGBA")
+        if image.mode == 'P':
+            image = image.convert('RGBA')
 
         circle = Image.new('L', (radius * 2, radius * 2), 0)
         draw = ImageDraw.Draw(circle)
@@ -54,8 +54,8 @@ class ImageGen:
     def prepare_album_cover(self) -> Image:
         image = Image.open(io.BytesIO(self.album_image_data))
 
-        if image.mode == "P":
-            image = image.convert("RGBA")
+        if image.mode == 'P':
+            image = image.convert('RGBA')
 
         width, height = image.size
 
@@ -103,10 +103,10 @@ class ImageGen:
    
         draw = ImageDraw.Draw(image)
 
-        title_font = ImageFont.truetype("fonts/Roboto-Bold.ttf", 26)
-        artist_font = ImageFont.truetype("fonts/Roboto-Bold.ttf", 20)
-        line_font = ImageFont.truetype("fonts/Roboto-Bold.ttf", 30)
-        watermark_font = ImageFont.truetype("fonts/Roboto-Bold.ttf", 15)
+        title_font = ImageFont.truetype('fonts/Roboto-Bold.ttf', 26)
+        artist_font = ImageFont.truetype('fonts/Roboto-Bold.ttf', 20)
+        line_font = ImageFont.truetype('fonts/Roboto-Bold.ttf', 30)
+        watermark_font = ImageFont.truetype('fonts/Roboto-Bold.ttf', 15)
 
         title_bbox = draw.textbbox((0, 0), self.title, font=title_font)
         artist_bbox = draw.textbbox((0, 0), self.artist, font=artist_font)
@@ -119,6 +119,6 @@ class ImageGen:
         draw.text(((margin + 110), title_y), self.title, fill=self.text_color, font=title_font)
         draw.text(((margin + 110), artist_y), self.artist, fill=self.text_color, font=artist_font)
         draw.text((margin, line_y), self.line, fill=self.text_color, font=line_font)
-        draw.text((margin, 400 - margin - 15), "@sentinobot", fill=self.text_color, font=watermark_font)
+        draw.text((margin, 400 - margin - 15), '@sentinobot', fill=self.text_color, font=watermark_font)
 
         return image
