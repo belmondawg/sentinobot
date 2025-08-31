@@ -22,7 +22,7 @@ class Song:
     """
     def __init__(self):
         self.data = json.load(open('data/Lyrics_Sentino.json', 'r'))
-        self.song = random.choice(self.data.get("songs"))
+        self.song = random.choice(self.data.get('songs'))
 
     @property
     def title(self) -> str:
@@ -35,7 +35,7 @@ class Song:
     @property
     def album(self) -> str:
         album = self.song.get('album')
-        return album['name'] if album is not None else "Single"
+        return album['name'] if album is not None else 'Single'
 
     @property
     def primary_color(self) -> str:
@@ -60,11 +60,11 @@ class Song:
            
     def get_random_line(self) -> str:
         lyrics = self.song.get('lyrics')
-        line = random.choice(lyrics.split("\n"))
+        line = random.choice(lyrics.split('\n'))
         blacklisted_characters = ['[', ']']
 
         for character in blacklisted_characters:
-            if character in line or line.strip() == "" or len(line) > 40:
+            if character in line or line.strip() == '' or len(line) > 40:
                 return self.get_random_line()
             
         return line
