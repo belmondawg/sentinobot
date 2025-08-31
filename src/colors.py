@@ -1,8 +1,8 @@
 def hex_to_rgb(hex_color: str) -> tuple:
     """Convert hex to rgb"""
-    if hex_color == "#000":
+    if hex_color == '#000':
         return (0, 0, 0)
-    elif hex_color == "#fff":
+    elif hex_color == '#fff':
         return (255, 255, 255)
     else:
         hex_color = hex_color.lstrip('#')
