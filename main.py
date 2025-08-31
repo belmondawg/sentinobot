@@ -12,13 +12,13 @@ from src.song import Song
 
 load_dotenv()
 
-API_KEY                 = os.environ["API_KEY"]
-API_KEY_SECRET          = os.environ["API_KEY_SECRET"]
+API_KEY                 = os.environ['API_KEY']
+API_KEY_SECRET          = os.environ['API_KEY_SECRET']
 
-ACCESS_TOKEN            = os.environ["ACCESS_TOKEN"]
-ACCESS_TOKEN_SECRET     = os.environ["ACCESS_TOKEN_SECRET"]
+ACCESS_TOKEN            = os.environ['ACCESS_TOKEN']
+ACCESS_TOKEN_SECRET     = os.environ['ACCESS_TOKEN_SECRET']
 
-BEARER_TOKEN            = os.environ["BEARER_TOKEN"]
+BEARER_TOKEN            = os.environ['BEARER_TOKEN']
 
 auth = tweepy.OAuth1UserHandler(API_KEY, API_KEY_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
@@ -26,7 +26,7 @@ api = tweepy.API(auth)
 client = tweepy.Client(BEARER_TOKEN, API_KEY, API_KEY_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
 logging.basicConfig(
-    filename="sentino.log",
+    filename='sentino.log',
     format='%(asctime)s %(message)s',
     filemode='w'
 )
@@ -56,17 +56,17 @@ def main():
         )
 
         image = image_gen.generate()
-        image.save("data/image.png")
+        image.save('data/image.png')
 
-        logger.info("posting...")
+        logger.info('posting...')
         
         try:
-            media = api.media_upload("data/image.png")
+            media = api.media_upload('data/image.png')
             tweet = client.create_tweet(media_ids=[media.media_id])
         except tweepy.errors.TooManyRequests:
-            logging.info("done for today")
+            logging.info('done for today')
   
         time.sleep((60 * 60) * random.randint(1, 3))
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
